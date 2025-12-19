@@ -12,7 +12,7 @@ export default function BlogPost() {
 
   // SEO para compartilhamento em redes sociais
   useSEO({
-    title: post ? `${post.title} | Blog` : "Post não encontrado | Blog",
+    title: post ? post.title : "Post não encontrado",
     description: post?.excerpt,
     url: window.location.origin + location.pathname,
   });
