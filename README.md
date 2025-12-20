@@ -26,6 +26,8 @@ Este é um blog pessoal desenvolvido com foco em performance, acessibilidade e e
 - 📖 **Markdown Support** - Conteúdo renderizado com tipografia aprimorada
 - ⏱️ **Tempo de Leitura** - Estimativa automática de tempo de leitura
 - 🎭 **Ícones Customizados** - Covers únicas para cada post com Lucide Icons
+- 🖼️ **Open Graph & SEO** - Metadados otimizados para compartilhamento em redes sociais
+- 📸 **Imagens nos Posts** - Suporte para imagens de destaque em cada post
 
 ---
 
@@ -205,7 +207,8 @@ bun preview
 Os posts estão definidos em [src/data/posts.ts](src/data/posts.ts). Para adicionar um novo post:
 
 1. Abra o arquivo `src/data/posts.ts`
-2. Adicione um novo objeto ao array `posts`:
+2. (Opcional) Adicione uma imagem em `public/images/posts/`
+3. Adicione um novo objeto ao array `posts`:
 
 ```typescript
 {
@@ -235,6 +238,7 @@ const exemplo = "Olá mundo";
     icon: "code", // Qualquer ícone do Lucide
     tint: "blue"  // blue, green, purple, orange
   },
+  ogImage: "/images/posts/meu-novo-post.png", // Imagem para compartilhamento (opcional)
 }
 ```
 
@@ -255,6 +259,37 @@ const exemplo = "Olá mundo";
 - `green` - Verde
 - `purple` - Roxo
 - `orange` - Laranja
+
+### Imagens para Compartilhamento (Open Graph)
+
+O campo `ogImage` é usado para definir a imagem que aparece quando você compartilha o link do post em redes sociais (Facebook, Twitter, LinkedIn, WhatsApp, etc.).
+
+**Boas práticas**:
+- **Tamanho recomendado**: 1200x630px (proporção 1.91:1)
+- **Formato**: PNG ou JPG
+- **Peso**: Máximo 1MB para carregamento rápido
+- **Localização**: Salve em `public/images/posts/`
+- **Nomenclatura**: Use o slug do post (ex: `meu-post.png`)
+
+**Exemplo**:
+```typescript
+ogImage: "/images/posts/frontend-estado.png"
+```
+
+**Como funciona**:
+- Quando você compartilha o link, as redes sociais leem os metadados Open Graph
+- A imagem definida em `ogImage` aparece no card de compartilhamento
+- Junto com a imagem, aparecem também o título e a descrição do post
+
+**Se não definir uma imagem**:
+- O sistema gera automaticamente um placeholder bonito com o título e categoria do post
+- O placeholder usa gradientes de cores baseados na categoria (Frontend=Azul, Backend=Verde, etc.)
+- Nunca ficará uma imagem quebrada ou espaço vazio no blog
+- Imagens personalizadas são recomendadas para maior engajamento nas redes sociais
+
+**Tratamento de erros**:
+- Se a imagem não carregar ou estiver quebrada, o placeholder aparece automaticamente
+- O sistema detecta erros de carregamento e faz fallback gracioso
 
 ---
 

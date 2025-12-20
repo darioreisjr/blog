@@ -36,6 +36,7 @@ Se você domina estado, você domina o coração do Front-End.
     category: "frontend",
     author: { name: "Dário Reis Jr." },
     cover: { type: "icon", icon: "globe", tint: "blue" },
+    ogImage: "/images/posts/frontend-estado.png", // Imagem para compartilhamento
   },
   {
     id: "2",
@@ -67,6 +68,7 @@ Comece temporário, promova para permanente só quando fizer sentido.
     category: "produtividade",
     author: { name: "Dário Reis Jr." },
     cover: { type: "icon", icon: "layers", tint: "purple" },
+    ogImage: "/images/posts/estado-permanente.png",
   },
   {
     id: "3",
@@ -92,6 +94,7 @@ Separar responsabilidade não é frescura, é manutenção barata.
     category: "carreira",
     author: { name: "Dário Reis Jr." },
     cover: { type: "icon", icon: "server", tint: "green" },
+    ogImage: "/images/posts/separacao-responsabilidades.png",
   },
   {
     id: "4",
@@ -115,6 +118,7 @@ Nem tudo é "só build". Tem impacto direto no dia a dia.
     category: "frontend",
     author: { name: "Dário Reis Jr." },
     cover: { type: "icon", icon: "smartphone", tint: "orange" },
+    ogImage: "/images/posts/bundlers-compilers.png",
   },
 ];
 
