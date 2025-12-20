@@ -4,6 +4,7 @@ import { posts } from "@/data/posts";
 import { TagChip } from "@/components/blog/TagChip";
 import { MarkdownContent } from "@/components/blog/MarkdownContent";
 import { RelatedPosts } from "@/components/blog/RelatedPosts";
+import { PostImagePlaceholder } from "@/components/blog/PostImagePlaceholder";
 import { useSEO } from "@/hooks/useSEO";
 import { getRelatedPosts } from "@/utils/getRelatedPosts";
 
@@ -19,6 +20,7 @@ export default function BlogPost() {
   useSEO({
     title: post ? post.title : "Post não encontrado",
     description: post?.excerpt,
+    image: post?.ogImage ? window.location.origin + post.ogImage : undefined,
     url: window.location.origin + location.pathname,
   });
 
@@ -78,6 +80,15 @@ export default function BlogPost() {
               ))}
             </div>
           </header>
+
+          <div className="mb-8 rounded-lg overflow-hidden">
+            <PostImagePlaceholder
+              src={post.ogImage}
+              alt={post.title}
+              title={post.title}
+              category={post.category}
+            />
+          </div>
 
           <div className="border-t border-border pt-8">
             <MarkdownContent content={post.content} />

@@ -10,6 +10,7 @@ export type BlogPost = {
     imageUrl?: string;
     tint?: "blue" | "green" | "purple" | "orange";
   };
+  ogImage?: string; // URL da imagem para Open Graph (compartilhamento)
   publishedAt: string;
   readingTimeMinutes: number;
   tags: string[];

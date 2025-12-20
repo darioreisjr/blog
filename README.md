@@ -235,6 +235,7 @@ const exemplo = "Olá mundo";
     icon: "code", // Qualquer ícone do Lucide
     tint: "blue"  // blue, green, purple, orange
   },
+  ogImage: "/images/posts/meu-novo-post.png", // Imagem para compartilhamento (opcional)
 }
 ```
 
@@ -255,6 +256,37 @@ const exemplo = "Olá mundo";
 - `green` - Verde
 - `purple` - Roxo
 - `orange` - Laranja
+
+### Imagens para Compartilhamento (Open Graph)
+
+O campo `ogImage` é usado para definir a imagem que aparece quando você compartilha o link do post em redes sociais (Facebook, Twitter, LinkedIn, WhatsApp, etc.).
+
+**Boas práticas**:
+- **Tamanho recomendado**: 1200x630px (proporção 1.91:1)
+- **Formato**: PNG ou JPG
+- **Peso**: Máximo 1MB para carregamento rápido
+- **Localização**: Salve em `public/images/posts/`
+- **Nomenclatura**: Use o slug do post (ex: `meu-post.png`)
+
+**Exemplo**:
+```typescript
+ogImage: "/images/posts/frontend-estado.png"
+```
+
+**Como funciona**:
+- Quando você compartilha o link, as redes sociais leem os metadados Open Graph
+- A imagem definida em `ogImage` aparece no card de compartilhamento
+- Junto com a imagem, aparecem também o título e a descrição do post
+
+**Se não definir uma imagem**:
+- O sistema gera automaticamente um placeholder bonito com o título e categoria do post
+- O placeholder usa gradientes de cores baseados na categoria (Frontend=Azul, Backend=Verde, etc.)
+- Nunca ficará uma imagem quebrada ou espaço vazio no blog
+- Imagens personalizadas são recomendadas para maior engajamento nas redes sociais
+
+**Tratamento de erros**:
+- Se a imagem não carregar ou estiver quebrada, o placeholder aparece automaticamente
+- O sistema detecta erros de carregamento e faz fallback gracioso
 
 ---
 
