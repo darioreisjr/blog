@@ -26,8 +26,6 @@ Este é um blog pessoal desenvolvido com foco em performance, acessibilidade e e
 - 📖 **Markdown Support** - Conteúdo renderizado com tipografia aprimorada
 - ⏱️ **Tempo de Leitura** - Estimativa automática de tempo de leitura
 - 🎭 **Ícones Customizados** - Covers únicas para cada post com Lucide Icons
-- 🖼️ **Open Graph & SEO** - Metadados otimizados para compartilhamento em redes sociais
-- 📸 **Imagens nos Posts** - Suporte para imagens de destaque em cada post
 
 ---
 
@@ -207,8 +205,7 @@ bun preview
 Os posts estão definidos em [src/data/posts.ts](src/data/posts.ts). Para adicionar um novo post:
 
 1. Abra o arquivo `src/data/posts.ts`
-2. (Opcional) Adicione uma imagem em `public/images/posts/`
-3. Adicione um novo objeto ao array `posts`:
+2. Adicione um novo objeto ao array `posts`:
 
 ```typescript
 {

@@ -3,13 +3,18 @@ import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
 import { posts } from "@/data/posts";
 import { TagChip } from "@/components/blog/TagChip";
 import { MarkdownContent } from "@/components/blog/MarkdownContent";
+import { RelatedPosts } from "@/components/blog/RelatedPosts";
 import { PostImagePlaceholder } from "@/components/blog/PostImagePlaceholder";
 import { useSEO } from "@/hooks/useSEO";
+import { getRelatedPosts } from "@/utils/getRelatedPosts";
 
 export default function BlogPost() {
   const location = useLocation();
   const { slug } = useParams<{ slug: string }>();
   const post = posts.find((p) => p.slug === slug);
+
+  // Obter posts relacionados
+  const relatedPosts = post ? getRelatedPosts(post, posts) : [];
 
   // SEO para compartilhamento em redes sociais
   useSEO({
@@ -88,6 +93,8 @@ export default function BlogPost() {
           <div className="border-t border-border pt-8">
             <MarkdownContent content={post.content} />
           </div>
+
+          <RelatedPosts posts={relatedPosts} />
         </article>
       </div>
     </div>

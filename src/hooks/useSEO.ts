@@ -1,13 +1,30 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { generateOGImage } from "@/utils/generateOGImage";
 
 interface SEOProps {
   title: string;
   description?: string;
   image?: string;
   url?: string;
+  generateImage?: boolean;
 }
 
-export function useSEO({ title, description, image, url }: SEOProps) {
+export function useSEO({ title, description, image, url, generateImage = true }: SEOProps) {
+  const [generatedImage, setGeneratedImage] = useState<string | null>(null);
+
+  useEffect(() => {
+    // Gera imagem OG automaticamente se não houver imagem fornecida
+    if (generateImage && !image && description) {
+      generateOGImage(title, description)
+        .then((dataUrl) => {
+          setGeneratedImage(dataUrl);
+        })
+        .catch((error) => {
+          console.error("Erro ao gerar imagem OG:", error);
+        });
+    }
+  }, [title, description, image, generateImage]);
+
   useEffect(() => {
     // Update document title
     document.title = title;
@@ -35,10 +52,10 @@ export function useSEO({ title, description, image, url }: SEOProps) {
     updateMeta("og:type", "article");
     updateMeta("twitter:card", "summary_large_image");
 
-    if (image) {
-      updateMeta("og:image", image);
-      updateMeta("twitter:image", image);
-    }
+    // Usa a imagem fornecida, ou a gerada, ou uma padrão
+    const ogImage = image || generatedImage || `${window.location.origin}/og-image.png`;
+    updateMeta("og:image", ogImage);
+    updateMeta("twitter:image", ogImage);
 
     if (url) {
       updateMeta("og:url", url);
@@ -48,5 +65,5 @@ export function useSEO({ title, description, image, url }: SEOProps) {
     return () => {
       document.title = "Blog";
     };
-  }, [title, description, image, url]);
+  }, [title, description, image, url, generatedImage]);
 }
