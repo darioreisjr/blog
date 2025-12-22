@@ -5,6 +5,7 @@ import { TagChip } from "@/components/blog/TagChip";
 import { MarkdownContent } from "@/components/blog/MarkdownContent";
 import { RelatedPosts } from "@/components/blog/RelatedPosts";
 import { PostImagePlaceholder } from "@/components/blog/PostImagePlaceholder";
+import { SocialShare } from "@/components/blog/SocialShare";
 import { useSEO } from "@/hooks/useSEO";
 import { getRelatedPosts } from "@/utils/getRelatedPosts";
 
@@ -93,6 +94,12 @@ export default function BlogPost() {
           <div className="border-t border-border pt-8">
             <MarkdownContent content={post.content} />
           </div>
+
+          <SocialShare
+            url={window.location.href}
+            title={post.title}
+            description={post.excerpt}
+          />
 
           <RelatedPosts posts={relatedPosts} />
         </article>
